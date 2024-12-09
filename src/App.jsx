@@ -10,10 +10,14 @@ function App() {
 		setTodos([...todos, newTodo]);
 	};
 
+	const removeTodo = (todoId) => {
+		setTodos(todos.filter((todo) => todo.id !== todoId));
+		console.log(todos);
+	};
 	return (
 		<>
 			<ToDoCreate onCreateTodo={createTodo} />
-			<ToDoList todos={todos} />
+			<ToDoList todos={todos} onRemoveTodo={removeTodo} />
 		</>
 	);
 }
