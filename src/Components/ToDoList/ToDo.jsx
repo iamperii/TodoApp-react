@@ -1,19 +1,52 @@
 import { MdOutlineDeleteOutline } from 'react-icons/md';
 import { CiEdit } from 'react-icons/ci';
-const ToDo = ({ todo, onRemoveTodo }) => {
+import { FaCheck } from 'react-icons/fa6';
+import { useState } from 'react';
+
+const ToDo = ({ todo, onRemoveTodo, onUpdate }) => {
 	const { content, id } = todo;
-	// console.log(content);
-	// console.log(todo);
-	console.log(onRemoveTodo);
+	const [editable, setEditable] = useState(false);
+	const [editedTodo, setEditedTodo] = useState(content);
+
 	const removeTodo = () => {
-		// console.log(id);
 		onRemoveTodo(id);
+	};
+
+	const updateTodo = () => {
+		const request = {
+			id: id,
+			content: editedTodo,
+		};
+		onUpdate(request);
+		setEditable(false);
 	};
 	return (
 		<div className="content">
-			<div className="to-do-text">{content}</div>
+			<div className="to-do-text">
+				{editable ? (
+					<input
+						type="text"
+						name="to-do"
+						id="edit-label"
+						value={editedTodo}
+						onChange={(e) => setEditedTodo(e.target.value)}
+					/>
+				) : (
+					<>
+						<div>{content}</div>
+					</>
+				)}
+			</div>
 			<div className="icon-container">
-				<CiEdit className="icon" />
+				{editable ? (
+					<FaCheck
+						className="icon"
+						// onClick={() => setEditable(false)}
+						onClick={updateTodo}
+					/>
+				) : (
+					<CiEdit className="icon" onClick={() => setEditable(true)} />
+				)}
 				<MdOutlineDeleteOutline className="icon" onClick={removeTodo} />
 			</div>
 		</div>

@@ -5,19 +5,28 @@ import ToDoList from './Components/ToDoList/ToDoList';
 
 function App() {
 	const [todos, setTodos] = useState([]);
-
+	console.log(todos);
 	const createTodo = (newTodo) => {
 		setTodos([...todos, newTodo]);
 	};
 
 	const removeTodo = (todoId) => {
 		setTodos(todos.filter((todo) => todo.id !== todoId));
-		console.log(todos);
+	};
+
+	const updateTodo = (newTodo) => {
+		const updatedTodo = todos.map((todo) => {
+			if (todo.id !== newTodo.id) {
+				return todo;
+			}
+			return newTodo;
+		});
+		setTodos([...updatedTodo]);
 	};
 	return (
 		<>
 			<ToDoCreate onCreateTodo={createTodo} />
-			<ToDoList todos={todos} onRemoveTodo={removeTodo} />
+			<ToDoList todos={todos} onRemoveTodo={removeTodo} onUpdate={updateTodo} />
 		</>
 	);
 }

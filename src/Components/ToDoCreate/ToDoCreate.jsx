@@ -2,7 +2,6 @@ import { useState } from 'react';
 import './ToDoCreate.css';
 
 const ToDoCreate = ({ onCreateTodo }) => {
-	// console.log(onCreateTodo);
 	const [newTodo, setNewTodo] = useState('');
 
 	const clearInput = () => {
