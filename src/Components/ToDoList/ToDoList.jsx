@@ -1,12 +1,13 @@
 import React from 'react';
-import ToDo from './ToDo';
 import './ToDoList.css';
-const ToDoList = () => {
+import ToDo from './ToDo';
+const ToDoList = ({ todos }) => {
+	console.log(todos);
 	return (
 		<>
-			<ToDo />
-			<ToDo />
-			<ToDo />
+			<div>
+				{todos && todos.map((todo) => <ToDo key={todo.id} todo={todo} />)}
+			</div>
 		</>
 	);
 };
