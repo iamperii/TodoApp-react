@@ -9,12 +9,11 @@ function App() {
 	const createTodo = (newTodo) => {
 		setTodos([...todos, newTodo]);
 	};
-	console.log(todos);
 
 	return (
 		<>
 			<ToDoCreate onCreateTodo={createTodo} />
-			<ToDoList />
+			<ToDoList todos={todos} />
 		</>
 	);
 }
