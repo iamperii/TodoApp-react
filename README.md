@@ -1,3 +1,3 @@
 
 ### 🗒️ TO-do App
-This is a basic Todo-list program. Code writedwith React.
+This is a basic Todo-list program. Code writed with React.
